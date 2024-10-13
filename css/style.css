@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: rgba(230,230,230,1);
+}
+
+.grid-container{
+    display: grid;
+    width: 400px;
+    height: 650px;
+    margin: 0 auto;
+    border: 1px solid;
+    border-color: rgba(90,90,90,1);
+    border-radius: 10px;
+    box-shadow: 10px 10px 25px rgba(20,20,20,1);
+    background-color: rgba(120, 120, 120,1);
+    font-family: "Courier Prime", monospace;
+    grid-template-columns: auto auto auto auto;
+    padding: 10px;
+    gap: 10px;
+}
+
+.grid-container > div{
+    padding: 2px;
+}
+
+/*Display item*/
+.grid-item01{
+
+    grid-column-start: 1;
+    grid-column-end: 5;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: end;
+    box-sizing: border-box;
+    border: 2px solid;
+    border-radius: 25px;
+    border-color: rgba(90,90,90,1);
+    font-size: 3em;
+    color: rgba(200, 200, 200,1);
+    box-shadow: inset 0px 0px 10px 10px rgba(90,90,90,1);
+}
+
+.lcd{
+    padding-right: 15px;
+}
+
+.grid-item18{
+    grid-column-start: 1;
+    grid-column-end: 3;    
+}
+
+div > button{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    border: 1px solid;
+    border-radius: 25px;
+    font-size: 1.4em;
+    background-color: rgba(90,90,90,1);
+    border-color: rgba(90,90,90,1);
+    color: rgba(200, 200, 200,1);
+}
+
+div > button:hover{
+    background-color: rgba(120, 120, 120,1);
+    border-color: rgba(230, 230, 230,1);
+    color: rgba(230, 230, 230,1);
+}
