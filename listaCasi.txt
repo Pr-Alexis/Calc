@@ -1,0 +1,5 @@
+1. Numero inserito e prima operazione
+2. seconda operazione
+    a. con Numero
+    b. senza Numero
+3. nuovo operatore
