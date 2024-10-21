@@ -6,14 +6,8 @@ lcd.textContent="0";
 let firstOperand = 
     secondOperand =
     firstOperator =
-    secondOperator = null;
-
-
-function numberConverter(number){
-    //If it finds "." in the converts to float otherwise to integer
-    if(number.indexOf>-1) return parseFloat(number);
-    return parseInt(number);
-}
+    secondOperator = 
+    result = null;
 
 
 function displayUpdater(number){
@@ -26,36 +20,48 @@ function displayClear(){
 }
 
 
-
 function operate(operation, lcdValue){
     if(firstOperator==null) {
         firstOperator=operation;
-        firstOperand= numberConverter(lcdValue);
+        firstOperand= Number(lcdValue);
         return '';
     }
     else {
         secondOperator = operation;
-        secondOperand = numberConverter(lcdValue);
+        secondOperand = Number(lcdValue);
     }
-    if(secondOperator.localeCompare('=')==0){
+    if(secondOperator!==null){
         switch(firstOperator){
             case "%":
-                return firstOperand%secondOperand;
+                result= firstOperand%secondOperand;
             break;
             case "/":
-                return firstOperand/secondOperand;
+                result= firstOperand/secondOperand;
             break;
             case "*":
-                return firstOperand*secondOperand;
+                result= firstOperand*secondOperand;
             break;
             case "-":
-                return firstOperand-secondOperand;
+                result= firstOperand-secondOperand;
             break;
             case "+":
-                return firstOperand+secondOperand;
+                result= firstOperand+secondOperand;
             break;
 
         }
+       
+        if(secondOperator.localeCompare('=')!==0){
+            firstOperator=secondOperator;
+            firstOperand= result;
+        }
+        else{
+            firstOperator= null;
+            firstOperand= null;
+        }
+
+        secondOperator= null;
+
+        return result.toString();
     }
 
 }
@@ -64,6 +70,7 @@ function operate(operation, lcdValue){
 /*EVENT LISTENER*/
 buttons.forEach(button=>{
     button.addEventListener("click",()=>{
+        if(firstOperator!== null || secondOperator== null && firstOperator== null) displayClear();
         displayUpdater(button.value);
         });
     });
@@ -75,4 +82,10 @@ operators.forEach(operator=>{
         })
    });
 
-acButton.addEventListener("click",displayClear);
+acButton.addEventListener("click",()=>{
+    displayClear();
+    firstOperand=null;
+    secondOperand=null;
+    firstOperator=null;
+    secondOperator=null;
+});
