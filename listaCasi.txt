@@ -1,5 +1,59 @@
-1. Numero inserito e prima operazione
-2. seconda operazione
-    a. con Numero
-    b. senza Numero
-3. nuovo operatore
+First draft operator
+function operationActivation(operation, lcdValue){
+    if(firstOperand == null) firstOperand = Number(lcdValue);
+    else secondOperand = Number(lcdValue);
+    
+    displayClear();
+    
+    if(firstOperator == null && operation.localeCompare('=') !==0) firstOperator = operation;
+    else  secondOperator = operation;
+    
+    if( firstOperand !== null && secondOperand !== null) {
+        operate();
+        lcd.textContent=result;
+    }
+    if( secondOperator !== null && secondOperator.localeCompare('=') == 0){
+        firstOperator  =
+        firstOperand   = null;      
+    }
+    else if(secondOperator !== null){
+        firstOperator = secondOperator;
+        firstOperand  = result;        
+    }
+
+    secondOperator =
+    secondOperand = null;
+    
+}
+
+
+Second draft
+function operationActivation(operation, lcdValue){
+    if(firstOperand == null) firstOperand = Number(lcdValue);
+    else secondOperand = Number(lcdValue);
+    
+    displayClear();
+    
+    if(firstOperator == null && operation.localeCompare('=') !==0) firstOperator = operation;
+    else  secondOperator = operation;
+    
+    if( firstOperand !== null && secondOperand !== null) {
+        operate();
+        lcd.textContent=result;
+    }
+
+    if(result !== null){
+        if(secondOperator.localeCompare('=')!==0){
+            firstOperand=result;
+            firstOperator=secondOperator;
+        }
+        else{
+            firstOperand=
+            firstOperator = null;
+        }
+        result=        
+        secondOperand =
+        secondOperator = null;
+    }
+    
+}
