@@ -12,15 +12,20 @@ let firstOperand =
     result = null;
 
 
-
-
 function displayClear(){
     lcd.textContent="";
     displayValue="";
 }
 
+
 function displayUpdate(value){
-    lcd.textContent=value;
+    value=value.toString();
+    if(value.length > 10) lcd.textContent = value.substring(0,10);
+    else lcd.textContent = value;
+}
+
+function rounder(value){
+    return Math.round((value + Number.EPSILON)*1000000000)/1000000000;
 }
 
 function operate(){
@@ -33,7 +38,10 @@ function operate(){
             result= firstOperand%secondOperand;
         break;
         case "/":
-            result= firstOperand/secondOperand;
+            if(secondOperand === 0){
+                result = 666;
+            }
+            else result= firstOperand/secondOperand;
         break;
         case "*":
             result= firstOperand*secondOperand;
@@ -45,10 +53,11 @@ function operate(){
             result= firstOperand+secondOperand;
         break;
     }
+
+    result= rounder(result);
 }
-//Change this to handle only operation
-//Add a function to handle =
-//Refactor input handling
+
+
 function operationActivation(operator){
     if(firstOperator == null){
         firstOperator = operator;
@@ -71,7 +80,6 @@ function operationActivation(operator){
         secondOperand = null;
         displayValue = "";
     }
-    
 }
 
 function equalActivation(){
@@ -87,7 +95,7 @@ function equalActivation(){
     }
 }
 
-
+//This handle the first number input
 function inputHandler(operand){
         if(displayValue =='0') {
             displayValue = operand;
@@ -98,37 +106,34 @@ function inputHandler(operand){
         else {
             displayValue += operand;
         }
-        
-
 }
 
 
 
-/*EVENT LISTENER*/       v=-
+/*EVENT LISTENER*/       
 buttons.forEach(button=>{
     button.addEventListener("click",()=>{
             inputHandler(button.value);
             displayUpdate(displayValue);
-        
         });
     });
 
 operators.forEach(operator=>{
-    operator.addEventListener("click",()=>{
+            operator.addEventListener("click",()=>{
             operationActivation(operator.value);
         })
    });
 
 equal.addEventListener("click",()=>{
-            equalActivation();
-});
+        equalActivation();
+    });
 
 acButton.addEventListener("click",()=>{
-    displayClear();
-    lcd.textContent=0;
-    firstOperand   =
-    secondOperand  =
-    firstOperator  =
-    secondOperator =
-    result         = null;
-});
+        displayClear();
+        lcd.textContent=0;
+        firstOperand   =
+        secondOperand  =
+        firstOperator  =
+        secondOperator =
+        result         = null;
+    });
