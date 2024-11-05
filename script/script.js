@@ -3,6 +3,9 @@ const lcd=document.querySelector(".lcd");
 const acButton=document.querySelector("#AC");
 const operators=document.querySelectorAll(".op")
 const equal=document.querySelector(".equal");
+const dotOperator = document.querySelector(".dotOp");
+const plusminus = document.querySelector(".plusminus");
+
 lcd.textContent="0";
 let displayValue="0";
 let firstOperand = 
@@ -65,6 +68,7 @@ function operationActivation(operator){
         displayClear();
     }
     else {
+   
         secondOperator = operator;
         secondOperand = displayValue;
     }
@@ -97,7 +101,7 @@ function equalActivation(){
 
 //This handle the first number input
 function inputHandler(operand){
-        if(displayValue =='0') {
+        if(displayValue == '0') {       
             displayValue = operand;
         }
         else if(displayValue == firstOperand){
@@ -108,7 +112,20 @@ function inputHandler(operand){
         }
 }
 
+function addDot(){
+    if(displayValue == '0'){
+        displayValue += '.';
+    }
+    else if(!displayValue.includes('.')){
+        displayValue+='.';
+    }
+    displayUpdate(displayValue);
+}
 
+function calculateOpposite(){
+    displayValue=(-1)*displayValue;
+    displayUpdate(displayValue);
+}
 
 /*EVENT LISTENER*/       
 buttons.forEach(button=>{
@@ -128,6 +145,10 @@ equal.addEventListener("click",()=>{
         equalActivation();
     });
 
+plusminus.addEventListener("click", ()=>{
+        calculateOpposite();
+    })
+
 acButton.addEventListener("click",()=>{
         displayClear();
         lcd.textContent=0;
@@ -137,3 +158,7 @@ acButton.addEventListener("click",()=>{
         secondOperator =
         result         = null;
     });
+
+dotOperator.addEventListener("click",()=>{
+        addDot();
+    })
