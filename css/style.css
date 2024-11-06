@@ -50,10 +50,10 @@ body{
 .lcd{
     padding-right: 15px;
 }
-
-.grid-item18{
-    grid-column-start: 1;
-    grid-column-end: 3;    
+/*Buttons*/
+.grid-item02{
+    width: 90px;
+    height: 90px;
 }
 
 div > button{
