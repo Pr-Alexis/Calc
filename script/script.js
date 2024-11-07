@@ -204,3 +204,14 @@ dotOperator.addEventListener("click",()=>{
 Cbutton.addEventListener("click",()=>{
     deleteLastInput();
 })
+
+
+/*The hard part:
+ *this adds an event listener for keyboard click
+ *finds the keyboard key with the same keyCode value of the data-key in the html
+ *simulate the click of the button
+ */
+window.addEventListener('keydown', function(e){
+    const key = document.querySelector(`button[data-key='${e.key}']`);
+    key.click();
+});
